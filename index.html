@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pexeso</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Pexeso</h1>
+    <div class="grid-container"></div>
+    <p>Moves: <span class="moves"></span></p>
+    <div class="actions">
+      <button class="btn" id="give-up-btn">Give Up</button>
+      <button class="btn" id="stop-watch-btn">Pause</button>
+      <button class="btn" id="continue-watch-btn">Continue</button>
+    </div>
+    <div class="stopwatch">
+      <p><span id="time">00:00:00</span></p>
+      <p id="playerTurn"></p>
+    </div>
+
+    <!-- MODAL -->
+
+    <section class="modal">
+      <section class="modal-content">
+        <h1>NEW GAME</h1>
+        <div>
+          <div class="number-of-players">
+            <button class="btn" id="one-player-btn">One player</button>
+            <button class="btn" id="two-players-btn">Two players</button>
+          </div>
+
+          <!-- ONE PLAYER FORM -->
+          <form class="one-player-form">
+            <label for="player_name">Player name:</label>
+            <input type="text" name="player_name" id="player_name" required />
+          </form>
+          <!-- TWO PLAYERS FORM -->
+          <form class="two-players-form">
+            <label for="player_one_name">Player one name:</label>
+            <input
+              type="text"
+              name="player_one_name"
+              id="player_one_name"
+              required
+            />
+            <label for="player_two_name">Player two name:</label>
+            <input
+              type="text"
+              name="player_two_name"
+              id="player_two_name"
+              required
+            />
+          </form>
+        </div>
+        <div>
+          <button class="btn" id="new-game-btn" type="submit" disabled>
+            New Game
+          </button>
+          <button class="btn" id="leaderboard-btn">Leaderboard</button>
+        </div>
+      </section>
+    </section>
+
+    <!-- MODAL END -->
+
+    <script src="index.js"></script>
+  </body>
+</html>
