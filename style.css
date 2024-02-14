@@ -34,7 +34,6 @@ p {
 }
 
 .moves-class {
-
   padding: 1em 0;
 }
 
@@ -45,6 +44,10 @@ p {
 
 .time {
   padding-bottom: 1em;
+}
+
+#playerTurn {
+  padding: 1em 0;
 }
 
 /* BUTTONS */
@@ -73,8 +76,12 @@ p {
   background-color: rgba(255, 0, 0, 0.555);
 }
 
-#pause-watch-btn {
-  display: block;
+#stop-watch-btn:hover {
+  background-color: #469065;
+}
+
+#continue-watch-btn:hover {
+  background-color: #469065;
 }
 
 #continue-watch-btn {
@@ -170,11 +177,52 @@ p {
 }
 
 #one-player-btn {
-  background: orange;
+  background: rgb(167, 108, 0);
+}
+
+#one-player-btn:hover {
+  transition: none;
+  background: rgb(245, 171, 33);
+}
+
+#one-player-btn:focus {
+  background: rgb(245, 171, 33);
 }
 
 #two-players-btn {
   background: purple;
+}
+
+#two-players-btn:hover {
+  transition: none;
+  background: rgb(175, 1, 175);
+}
+
+#two-players-btn:focus {
+  background: rgb(175, 1, 175);
+}
+
+#new-game-btn {
+  background-color: darkgreen;
+}
+
+#new-game-btn:hover {
+  transition: none;
+  background-color: green;
+}
+
+#leaderboard-btn {
+  background-color: rgb(0, 0, 255);
+}
+
+#leaderboard-btn:hover {
+  transition: none;
+  background-color: rgb(15, 15, 202);
+}
+
+#close-leaderboard:hover {
+  transition: none;
+  background-color: darkred;
 }
 
 .one-player-form {
