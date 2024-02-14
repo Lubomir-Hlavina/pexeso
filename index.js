@@ -32,6 +32,7 @@ let secondPlayerScore = 0;
 // Initialization
 initializeGame();
 
+
 function initializeGame() {
   fetch('./data/cards.json')
     .then((res) => res.json())
@@ -41,12 +42,16 @@ function initializeGame() {
       generateCards();
     });
 
+// Event listeners
+
   newGameBtn.addEventListener('click', startGame);
   giveUpBtn.addEventListener('click', giveUpGame);
   pauseGameBtn.addEventListener('click', stopGame);
   continueGameBtn.addEventListener('click', continueGame);
   twoPlayersBtn.addEventListener('click', twoPlayersOption);
   onePlayerBtn.addEventListener('click', onePlayerOption);
+  leaderboardBtn.addEventListener('click', openLeaderboardModal);
+  closeLeaderBoardBtn.addEventListener('click', closeLeaderboardModal);
 }
 
 // Card-related functions
@@ -344,12 +349,6 @@ function openLeaderboardModal() {
   leaderboardModal.style.display = 'block';
 }
 
-leaderboardBtn.addEventListener('click', openLeaderboardModal);
-
-// Leaderboard modal
-
 function closeLeaderboardModal() {
   leaderboardModal.style.display = 'none';
 }
-
-closeLeaderBoardBtn.addEventListener('click', closeLeaderboardModal);
