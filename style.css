@@ -6,7 +6,6 @@
 
 body {
   min-height: 100vh;
-  min-width: 100vh;
   background-color: #12181f;
   color: white;
 }
@@ -26,6 +25,26 @@ p {
 .actions {
   display: flex;
   justify-content: center;
+  gap: 1em;
+}
+
+.main-header {
+  color: red;
+  padding: 1em;
+}
+
+.moves-class {
+
+  padding: 1em 0;
+}
+
+.time-header {
+  padding-top: 1em;
+  color: red;
+}
+
+.time {
+  padding-bottom: 1em;
 }
 
 /* BUTTONS */
@@ -183,4 +202,46 @@ input {
   align-items: center;
   gap: 1em;
   margin-top: 1em;
+}
+
+/* MODAL LEADERBOARD */
+#modal-leaderboard {
+  height: 80%;
+  width: 55%;
+  display: none;
+  flex-direction: column;
+}
+
+#modal-leaderboard h1 {
+  margin: 0.5em;
+}
+
+#modal-leaderboard ol {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1;
+}
+
+#names {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1em;
+}
+
+#modal-leaderboard ol li {
+  font-size: 2.5rem;
+}
+
+.close-leaderboard-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+#close-leaderboard {
+  background: red;
 }

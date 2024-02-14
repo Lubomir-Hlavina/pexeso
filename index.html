@@ -6,16 +6,17 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <h1>Pexeso</h1>
+    <h1 class="main-header">Pexeso</h1>
     <div class="grid-container"></div>
-    <p>Moves: <span class="moves"></span></p>
+    <p class="moves-class">Moves: <span class="moves"></span></p>
     <div class="actions">
       <button class="btn" id="give-up-btn">Give Up</button>
       <button class="btn" id="stop-watch-btn">Pause</button>
       <button class="btn" id="continue-watch-btn">Continue</button>
     </div>
     <div class="stopwatch">
-      <p><span id="time">00:00:00</span></p>
+      <p class="time-header">Time:</p>
+      <p class="time"><span id="time">00:00:00</span></p>
       <p id="playerTurn"></p>
     </div>
 
@@ -60,6 +61,21 @@
           <button class="btn" id="leaderboard-btn">Leaderboard</button>
         </div>
       </section>
+    </section>
+    <section class="modal" id="modal-leaderboard">
+      <h1>Leaderboard</h1>
+      <ol>
+        <div id="names">
+          <li>Karol (15)</li>
+          <li>Miško (20)</li>
+          <li>Ferko (22)</li>
+          <li>Jožko (28)</li>
+          <li>Zuzka (34)</li>
+        </div>
+      </ol>
+      <div class="close-leaderboard-div">
+        <button class="btn" id="close-leaderboard">Close</button>
+      </div>
     </section>
 
     <!-- MODAL END -->

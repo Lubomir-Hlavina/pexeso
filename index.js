@@ -12,6 +12,9 @@ const twoPlayersForm = document.querySelector('.two-players-form');
 const onePlayerBtn = document.getElementById('one-player-btn');
 const onePlayerForm = document.querySelector('.one-player-form');
 const playerName = document.getElementById('player-name');
+const leaderboardBtn = document.getElementById('leaderboard-btn');
+const closeLeaderBoardBtn = document.getElementById('close-leaderboard');
+const leaderboardModal = document.getElementById('modal-leaderboard');
 
 // Variables
 let cards = [];
@@ -20,7 +23,11 @@ let secondCard;
 let lockBoard = true;
 let isGameStarted = false;
 let isGamePaused = false;
+let isSinglePlayer = false;
+let isMultiplayer = false;
 let moves = 0;
+let firstPlayerScore = 0;
+let secondPlayerScore = 0;
 
 // Initialization
 initializeGame();
@@ -187,14 +194,14 @@ function resetBoard() {
   firstCard = null;
   secondCard = null;
   lockBoard = false;
-  multiPlayerName();
+
+  isSinglePlayer ? singlePlayerName() : multiPlayerName();
 }
 
 // Name logic
 
 function singlePlayerName() {
   const playerNameValue = document.getElementById('player_name').value;
-
   document.getElementById(
     'playerTurn'
   ).textContent = `Name: ${playerNameValue}`;
@@ -203,9 +210,6 @@ function singlePlayerName() {
 function multiPlayerName() {
   const playerOneName = document.getElementById('player_one_name').value;
   const playerTwoName = document.getElementById('player_two_name').value;
-
-  console.log('Player One Name:', playerOneName);
-  console.log('Player Two Name:', playerTwoName);
 
   if (moves === 0 || moves % 2 === 0) {
     document.getElementById(
@@ -226,6 +230,8 @@ function startGame(e) {
     // Two players game
     const playerOneName = document.getElementById('player_one_name').value;
     const playerTwoName = document.getElementById('player_two_name').value;
+    isMultiplayer = true;
+    isSinglePlayer = false;
 
     if (!playerOneName || !playerTwoName) {
       alert('Both player names are required.');
@@ -233,9 +239,11 @@ function startGame(e) {
     }
 
     multiPlayerName();
-  } else {
+  } else if (onePlayerBtn.classList.contains('active')) {
     // One player game
     const playerNameValue = document.getElementById('player_name').value;
+    isMultiplayer = false;
+    isSinglePlayer = true;
 
     if (!playerNameValue) {
       alert('Player name is required.');
@@ -263,9 +271,43 @@ function giveUpGame() {
   resetTimer();
 }
 
+// UPDATE LEADERBOARD ITEMS
+function updateLeaderboard(score) {
+  const leaderboardList = document.getElementById('names');
+  const leaderboardEntries = Array.from(leaderboardList.children);
+  const currentPlayerName = document.getElementById('player_name').value;
+
+  const newEntry = document.createElement('li');
+  newEntry.textContent = `${currentPlayerName} (${score})`;
+
+  let added = false; // Flag to track if the new entry has been added
+
+  for (let i = 0; i < leaderboardEntries.length; i++) {
+    const entryScore = parseInt(
+      leaderboardEntries[i].textContent.match(/\d+/)[0]
+    );
+
+    if (score < entryScore) {
+      leaderboardList.insertBefore(newEntry, leaderboardEntries[i]);
+      added = true;
+      break;
+    }
+  }
+
+  // ONLY 5 ITEMS
+  if (added) {
+    leaderboardList.removeChild(
+      leaderboardEntries[leaderboardEntries.length - 1]
+    );
+  }
+}
+
 function endGame() {
   resetBoard();
   shuffleCards();
+
+  updateLeaderboard(moves);
+
   moves = 0;
   movesDisplay.textContent = moves;
   gridContainer.innerHTML = '';
@@ -297,3 +339,17 @@ function twoPlayersOption() {
   onePlayerBtn.classList.remove('active');
   twoPlayersBtn.classList.add('active');
 }
+
+function openLeaderboardModal() {
+  leaderboardModal.style.display = 'block';
+}
+
+leaderboardBtn.addEventListener('click', openLeaderboardModal);
+
+// Leaderboard modal
+
+function closeLeaderboardModal() {
+  leaderboardModal.style.display = 'none';
+}
+
+closeLeaderBoardBtn.addEventListener('click', closeLeaderboardModal);
